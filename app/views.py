@@ -25,6 +25,44 @@ def about():
     return render_template('about.html', name="Mary Jane")
 
 
+
+@app.route("/property", method=["POST"])
+def property():
+    form = PropertyForm()
+    if form.validate_on_submit():
+        ti = request.form['title']
+        no_bed = request.form['bedrooms']
+        no_bath = request.form['bathrooms']
+        price = request.files['price']
+        lo = request.form['location']
+        ty = request.form['type_']
+        di = request.form['description']
+        filename = secure_filename(im.filename)
+        im.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        new = PropertyProfile(ti, no_bed, no_bath, price, lo, ty, di, filename)
+        db.session.add(new)
+        db.session.commit()
+        flash('File Saved', 'success')
+        return redirect(url_for('properties'))
+    return render_template("property.html", form=form)
+
+
+@app.route('/properties')
+def properties():
+
+    prop=PropertyProfile.query.all()
+
+    if request.method == "POST":
+
+        return render_template("properties.html", users=prop)
+
+
+@app.route('/property/<propertyid>', method=['POST'])
+def prop_spec(propertyid):
+    prop = PropertyProfile.query.filter_by(id=propertyid).first()
+    return render_template("propertyspec.html", user=user)
+
+
 ###
 # The functions below should be applicable to all Flask apps.
 ###
