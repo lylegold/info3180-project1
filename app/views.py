@@ -26,7 +26,7 @@ def about():
 
 
 
-@app.route("/property", method=["POST"])
+@app.route("/property", methods=["GET", "POST"])
 def property():
     form = PropertyForm()
     if form.validate_on_submit():
@@ -57,10 +57,10 @@ def properties():
         return render_template("properties.html", users=prop)
 
 
-@app.route('/property/<propertyid>', method=['POST'])
+@app.route('/property/<propertyid>', methods=['POST', 'GET'])
 def prop_spec(propertyid):
     prop = PropertyProfile.query.filter_by(id=propertyid).first()
-    return render_template("propertyspec.html", user=user)
+    return render_template("propertyinfo.html", user=prop)
 
 
 ###

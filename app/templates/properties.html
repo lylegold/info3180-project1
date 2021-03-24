@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+{% include 'flash_messages.html' %}
+
+    <div id="ProfHeading">
+        <h1>Properties</h1>
+    </div>
+    
+    {% for property in users %}
+
+    <div id="container">
+        <img id="propertypics" src="{{ url_for('static', filename='images/mansion.jfif') }}">
+        <div id="property-info">
+            <b>{{ property.title}}</b> 
+            <b>{{ property.location}}</b> 
+            <b>{{ property.price}}</b> 
+            <br>
+ 
+        </div>
+        <a href="{{ url_for('user_spec', propertyid=property.id) }}" class="viewProperty" >View Property</a>
+    </div>
+
+
+
+    <div id="container">
+        <img id="propertypics" src="{{ url_for('static', filename='images/property.jfif') }}">
+        <div id="property-info">
+            <b>{{ property.title}}</b> 
+            <b>{{ property.location}}</b> 
+            <b>{{ property.price}}</b>  <br/>
+ 
+        </div>
+        <a href="{{ url_for('user_spec', propertyid=property.id) }}" class="viewProperty" >View Property</a>
+    </div>
+    
+
+
+    <div id="container">
+        <img id="propertypics" src="{{ url_for('static', filename='images/location.jpg') }}">
+        <div id="property-info">
+            <b>{{ property.title}}</b> 
+            <b>{{ property.location}}</b> 
+            <b>{{ property.price}}</b>  <br/>
+ 
+        </div>
+        <a href="{{ url_for('user_spec', propertyid=property.id) }}" class="viewProperty" >View Property</a>
+    </div>
+
+
+    {% endfor %}
+
+</div>    
+
+{% endblock %}

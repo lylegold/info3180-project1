@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+{% include 'flash_messages.html' %}
+
+<div id="personalcontainer">
+
+    
+   <img id="propertypicture" src="{{ url_for('static', filename=images/house1.jfif') }}">
+   <div id="propertyinfo">
+       <span id="profile-name"> 
+           {{ user.title }} 
+           {{ user.price }}
+           {{ user.type }}
+        </span> 
+        <br><br>
+
+   </div>
+   
+   <div id="about">Info</div>
+   <div id="description"> {{ user.description }} </div>
+   <button class="btnSend">Send</button>
+   <button class="btnFollow">Follow</button>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block main %}
+  <div class="login-form center-block">
+    <h2>Add New Property</h2>
+    {% include 'flash_messages.html' %}
+    <form action="{{ url_for('property') }}" enctype="multipart/form-data" method="post">
+      {{ form.csrf_token }}
+
+        <h4>{{ form.Title.label }}</h4>
+        {{ form.title(class='form-control', placeholder="Enter your title") }}
+      <br>
+      
+      <h4>{{ form.No. of Rooms.label }}</h4>
+        {{ form.bedrooms(class='form-control', placeholder="Enter the number of bedrooms") }}
+        <br>
+      
+        <h4>{{ form.No. of Bathrooms.label }}</h4>
+        {{ form.bathrooms(class='form-control', placeholder="Enter the number of bedrooms") }}
+        <br>
+      
+        <h4>{{ form.Price.label }}</h4>
+        {{ form.price(class='form-control', placeholder="15,000,000") }}
+        <br>
+      
+        <h4>{{ form.Location.label }}</h4>
+        {{ form.location(class='form-control', placeholder="10 Waterloo Rd") }}
+        <br>
+      
+        <h4>{{ form.Property Type.label}}</h4>
+        {{ form.type_(cols="20", rows= "3", class='form-control', placeholder="House") }}
+        <br>
+      
+        <h4>{{ form.Description.label}}</h4>
+        {{ form.description(cols="20", rows= "3", class='form-control', placeholder="House") }}
+        <br>
+
+        <h4>{{ form.photo.label }}</h4>
+        {{ form.csrf_token }}
+        {{ form.photo }}
+        <br>
+      
+      <button type="submit" name="submit" class="btn btn-primary btn-block">Add Property</button>
+    </form>
+  </div>
+{% endblock %}
